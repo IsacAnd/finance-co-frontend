@@ -11,7 +11,7 @@ function Register() {
       <div className="template-container">
         <img src={templateImg} alt="template-logo" />
       </div>
-      <a href="./login.html" id="backtologin">
+      <a id="backtologin" onClick={() => navigate("/login")}>
         <img src={backButton} alt="" />
       </a>
       <img src="../img/financeco-svg.png" alt="" />
@@ -21,7 +21,6 @@ function Register() {
           <p>Usuário</p>
           <input
             className="register-input"
-            clclassNameass="register-input"
             type="text"
             name="user"
             id="user-input"
@@ -63,7 +62,6 @@ function Register() {
           name="register"
           id="register-submit"
           value="Cadastrar"
-          onclick="register()"
         />
         <a onClick={() => navigate("/login")} id="login-link">
           Já possui uma conta? Clique aqui

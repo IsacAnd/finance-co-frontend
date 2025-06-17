@@ -103,6 +103,7 @@
   position: fixed;
   top: 10px;
   left: 20px;
+  cursor: pointer;
 }
 
 #backtologin img {

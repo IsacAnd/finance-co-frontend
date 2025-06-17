@@ -35,7 +35,7 @@ function Login() {
               placeholder="Digite a sua senha"
             />
           </div>
-          <div className="remind-me">
+          <div className="login-remind-me">
             <input type="checkbox" id="remindme" />
             <p>Lembrar de mim</p>
           </div>
