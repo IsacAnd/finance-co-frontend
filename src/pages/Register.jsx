@@ -2,8 +2,9 @@ import "../styles/register.css";
 import templateImg from "../public/img/template-logo.png";
 import backButton from "../public/img/circle-arrow-left-solid.svg";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import authService from "../services/authService";
+import { ToastContext } from "../context/ToastContext";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ function Register() {
     confirmPassword: "",
   });
   const navigate = useNavigate();
+  const { showToast } = useContext(ToastContext);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,15 +23,24 @@ function Register() {
     e.preventDefault();
 
     try {
-      if (formData.confirmPassword !== formData.password) return;
+      if (formData.confirmPassword !== formData.password) {
+        showToast("Senhas não correspondem", "warning");
+        return;
+      }
 
       const resp = await authService.register(formData);
 
-      if (resp.error) return;
+      console.log("ola", resp);
 
+      if (resp.error) {
+        return;
+      }
+
+      showToast("Cadastrado com sucesso!", "success");
       navigate("/login");
     } catch (error) {
       console.log(error);
+      showToast("Informações inválidas", "fail");
     }
   };
 

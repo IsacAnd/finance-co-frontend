@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate, Outlet } from "react-router-dom";
+import ToastProvider from "../context/ToastContext";
 
 export const PrivateRoute = () => {
   const { isAuthenticated } = useContext(AuthContext);

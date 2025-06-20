@@ -38,9 +38,7 @@ const authService = {
         myInit
       );
 
-      const data = resp.json();
-
-      return data;
+      return resp.json();
     } catch (error) {
       console.log(error);
     }

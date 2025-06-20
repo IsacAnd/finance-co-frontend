@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import authService from "../services/authService";
 import { AuthContext } from "../context/AuthContext";
+import { ToastContext } from "../context/ToastContext";
 
 function Login() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ function Login() {
     password: "",
   });
   const { login } = useContext(AuthContext);
+  const { showToast } = useContext(ToastContext);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,9 +25,19 @@ function Login() {
     try {
       const token = await authService.login(formData);
 
+      if (token.message) {
+        showToast("Credenciais inválidas", "fail");
+        return;
+      }
+
       login(token);
+      showToast("Logado com sucesso!", "success");
+      navigate("/");
     } catch (error) {
-      console.log(error);
+      const errorMessage =
+        error?.response?.data?.message || error.message || "Erro no login";
+      showToast(errorMessage, "fail");
+      console.error(error);
     }
   };
 
