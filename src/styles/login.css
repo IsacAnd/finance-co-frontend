@@ -80,7 +80,7 @@
   box-sizing: border-box;
 }
 
-#password-input {
+.password-input {
   box-sizing: border-box;
   background-image: url("../public/img/lock-solid.svg");
   background-repeat: no-repeat;

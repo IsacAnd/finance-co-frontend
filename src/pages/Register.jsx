@@ -2,9 +2,36 @@ import "../styles/register.css";
 import templateImg from "../public/img/template-logo.png";
 import backButton from "../public/img/circle-arrow-left-solid.svg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import authService from "../services/authService";
 
 function Register() {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const navigate = useNavigate();
+
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (formData.confirmPassword !== formData.password) return;
+
+      const resp = await authService.register(formData);
+
+      if (resp.error) return;
+
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="container">
@@ -22,8 +49,10 @@ function Register() {
           <input
             className="register-input"
             type="text"
-            name="user"
+            name="username"
             id="user-input"
+            value={formData.username}
+            onChange={handleChange}
           />
         </div>
         <div className="input-container">
@@ -31,26 +60,32 @@ function Register() {
           <input
             className="register-input"
             type="text"
-            name="user"
+            name="email"
             id="email-input"
+            value={formData.email}
+            onChange={handleChange}
           />
         </div>
         <div className="input-container">
           <p>Senha</p>
           <input
-            className="register-input"
+            className="register-input password-input"
             type="password"
-            name="user-password"
+            name="password"
             id="password-input"
+            value={formData.password}
+            onChange={handleChange}
           />
         </div>
         <div className="input-container">
           <p>Confime sua senha</p>
           <input
-            className="register-input"
+            className="register-input password-input"
             type="password"
-            name="user-password-confirm"
-            id="password-input"
+            name="confirmPassword"
+            id="confirm-password-input"
+            value={formData.confirmPassword}
+            onChange={handleChange}
           />
         </div>
         <div className="remind-me">
@@ -62,6 +97,7 @@ function Register() {
           name="register"
           id="register-submit"
           value="Cadastrar"
+          onClick={handleSubmit}
         />
         <a onClick={() => navigate("/login")} id="login-link">
           Já possui uma conta? Clique aqui

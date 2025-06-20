@@ -1,8 +1,12 @@
 import styles from "../styles/Home.module.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import financoLogo from "../public/img/financeco-logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function Home() {
+  const authContext = useContext(AuthContext);
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -16,6 +20,7 @@ function Home() {
           <i className={`fa fa-user ${styles.accItem}`}></i>
           <i className={`fa fa-gear ${styles.accItem}`}></i>
           <i
+            onClick={authContext.logout}
             id="logout"
             className={`fa-solid fa-right-from-bracket ${styles.accItem}`}
           ></i>
