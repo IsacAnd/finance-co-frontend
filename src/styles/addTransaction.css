@@ -1,0 +1,110 @@
+:root {
+  --primary-color: #1a5ab2;
+  --primary-hover: #367bd9;
+  --bg-color: #fff;
+  --card-bg: #fff;
+  --text-color: #333;
+  --border-radius: 0.75em;
+  /* --shadow: 0 6px 16px rgba(0, 0, 0, 0.1); */
+}
+
+.addTransaction-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-color);
+}
+
+.addTransaction-form {
+  background: var(--card-bg);
+  padding: 2em;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  width: 100%;
+  max-width: 500px;
+  transition: all 0.3s ease;
+  margin-top: 0.5em;
+}
+
+.addTransaction-form:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-input label {
+  font-weight: 600;
+  font-size: 0.95em;
+  color: var(--text-color);
+}
+
+.form-input input {
+  padding: 0.8em 1em;
+  border-radius: var(--border-radius);
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 1em;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.form-input input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(26, 90, 178, 0.2);
+}
+
+/* Botão */
+.addTransaction-form input[type="submit"] {
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.9em;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.addTransaction-form input[type="submit"]:hover {
+  background: var(--primary-hover);
+  transform: scale(1.02);
+}
+
+.addTransaction-form input[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+.transaction-type {
+  padding: 0.8em 1em;
+  border-radius: var(--border-radius);
+  border: 1px solid #ddd;
+  font-size: 1em;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s, background 0.3s;
+}
+
+.transaction-type:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(26, 90, 178, 0.2);
+}
+
+.transaction-type.renda {
+  background-color: #e6f7ea;
+  color: #2a7a2a;
+}
+
+.transaction-type.despesa {
+  background-color: #ffe6e6;
+  color: #d93025;
+}

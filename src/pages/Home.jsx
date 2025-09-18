@@ -1,11 +1,16 @@
 import styles from "../styles/Home.module.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import financoLogo from "../public/img/financeco-logo.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { jwtDecode } from "jwt-decode";
+import AddTransaction from "../components/AddTransaction";
 
 function Home() {
   const authContext = useContext(AuthContext);
+  const [isAddingTransaction, setIsAddingTransaction] = useState(true);
+
+  const { name } = jwtDecode(localStorage.getItem("token"));
 
   return (
     <div className={styles.container}>
@@ -32,21 +37,29 @@ function Home() {
       </aside>
 
       <main className={styles.main}>
-        <h1>Olá</h1>
-        <div className={styles.cardsContainer}>
-          <div className={`${styles.card} ${styles.card1}`}>
-            <canvas id="meuGrafico"></canvas>
-          </div>
-          <div className={`${styles.card} ${styles.card2}`}>
-            <canvas id="meuGrafico"></canvas>
-          </div>
-          <div className={`${styles.card} ${styles.card3}`}>
-            <canvas id="meuGrafico"></canvas>
-          </div>
-          <div className={`${styles.card} ${styles.card4}`}>
-            <canvas id="meuGrafico"></canvas>
-          </div>
-        </div>
+        {isAddingTransaction ? (
+          <>
+            <AddTransaction />
+          </>
+        ) : (
+          <>
+            <h1>Olá, {name}</h1>
+            <div className={styles.cardsContainer}>
+              <div className={`${styles.card} ${styles.card1}`}>
+                <canvas id="meuGrafico"></canvas>
+              </div>
+              <div className={`${styles.card} ${styles.card2}`}>
+                <canvas id="meuGrafico"></canvas>
+              </div>
+              <div className={`${styles.card} ${styles.card3}`}>
+                <canvas id="meuGrafico"></canvas>
+              </div>
+              <div className={`${styles.card} ${styles.card4}`}>
+                <canvas id="meuGrafico"></canvas>
+              </div>
+            </div>
+          </>
+        )}
       </main>
     </div>
   );

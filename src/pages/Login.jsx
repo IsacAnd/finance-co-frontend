@@ -23,14 +23,14 @@ function Login() {
     e.preventDefault();
 
     try {
-      const token = await authService.login(formData);
+      const resp = await authService.login(formData);
 
-      if (token.message) {
+      if (resp.message) {
         showToast("Credenciais inválidas", "fail");
         return;
       }
 
-      login(token);
+      login(resp);
       showToast("Logado com sucesso!", "success");
       navigate("/");
     } catch (error) {

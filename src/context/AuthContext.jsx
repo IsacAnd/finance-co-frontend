@@ -7,13 +7,16 @@ function AuthProvider({ children }) {
 
   const isAuthenticated = () => !!token;
 
-  const login = (newToken) => {
+  const login = (resp) => {
+    const token = resp.token;
+
     localStorage.setItem("token", token);
-    setToken(newToken);
+    setToken(token);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user-token");
     setToken(null);
   };
 
