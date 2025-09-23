@@ -57,6 +57,37 @@
   max-height: 100%;
 }
 
+.switchSections {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+  box-sizing: border-box;
+  justify-content: flex-start;
+}
+
+.switchSections ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 1em;
+}
+
+.switchSections ul li button {
+  font-weight: bold;
+  font-size: medium;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.3s ease-in-out;
+}
+
+.switchSections ul li button:hover {
+  color: #4e83ce;
+}
+
 /* Main */
 
 .main {
@@ -66,11 +97,10 @@
   align-items: center;
   justify-content: center;
   max-height: fit-content;
-  padding: 2em;
   box-sizing: border-box;
 }
 
-.main h1 {
+.main h2 {
   margin: 1em;
   margin-left: 1.8em;
   align-self: flex-start;

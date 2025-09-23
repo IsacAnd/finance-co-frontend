@@ -9,6 +9,7 @@ import AddTransaction from "../components/AddTransaction";
 function Home() {
   const authContext = useContext(AuthContext);
   const [isAddingTransaction, setIsAddingTransaction] = useState(true);
+  const [currentScreen, setCurrentScreen] = useState("dashboard");
 
   const { name } = jwtDecode(localStorage.getItem("token"));
 
@@ -33,17 +34,35 @@ function Home() {
       </header>
 
       <aside className={styles.aside}>
-        <div className={styles.switchSections}></div>
+        <div className={styles.switchSections}>
+          <ul>
+            <li>
+              <button onClick={() => setCurrentScreen("dashboard")}>
+                Dashboard
+              </button>
+            </li>
+            <li>
+              <button onClick={() => setCurrentScreen("addTransaction")}>
+                Adicionar transação
+              </button>
+            </li>
+            <li>
+              <button onClick={() => setCurrentScreen("transactionHistory")}>
+                Lista de transações
+              </button>
+            </li>
+          </ul>
+        </div>
       </aside>
 
       <main className={styles.main}>
-        {isAddingTransaction ? (
+        {currentScreen === "addTransaction" ? (
           <>
             <AddTransaction />
           </>
         ) : (
           <>
-            <h1>Olá, {name}</h1>
+            <h2>Olá, {name}</h2>
             <div className={styles.cardsContainer}>
               <div className={`${styles.card} ${styles.card1}`}>
                 <canvas id="meuGrafico"></canvas>
