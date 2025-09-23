@@ -102,8 +102,8 @@
 
 .main h2 {
   margin: 1em;
-  margin-left: 1.8em;
-  align-self: flex-start;
+
+  align-self: flex-center;
 }
 
 .cardsContainer {
